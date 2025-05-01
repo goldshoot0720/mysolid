@@ -10,20 +10,20 @@ export default function App() {
       root={props => (
         <MetaProvider>
           <Title>SolidStart - Basic</Title>
-          <a href="/">Index</a>
-          <a href="/sub1">Sub1</a>
-          <a href="/sub2">Sub2</a>
-          <a href="/sub3">Sub3</a>
-          <a href="/sub4">Sub4</a>
-          <a href="/sub5">Sub5</a>
-          <a href="/sub6">Sub6</a>
-          <a href="/sub7">Sub7</a>
-          <a href="/sub8">Sub8</a>
-          <a href="/sub9">Sub9</a>
-          <a href="/sub10">Sub10</a>
-          <a href="/sub11">Sub11</a>
-          <a href="/sub12">Sub12</a>
-          <a href="/about">About</a>
+          <a href="/">首頁</a>
+          <a href="/sub1">訂閱</a>
+          <a href="/sub2">銀行</a>
+          <a href="/sub3">錄取</a>
+          <a href="/sub4">學習</a>
+          <a href="/sub5">門診處方箋</a>
+          <a href="/sub6">消費</a>
+          <a href="/sub7">日期時間</a>
+          <a href="/sub8">金融市場</a>
+          <a href="/sub9">動畫追劇</a>
+          <a href="/sub10">部落格</a>
+          <a href="/sub11">大位天定</a>
+          <a href="/sub12">保留</a>
+          <a href="/about">關於</a>
           <Suspense>{props.children}</Suspense>
         </MetaProvider>
       )}
