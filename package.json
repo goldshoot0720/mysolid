@@ -1,0 +1,28 @@
+{
+  "name": "example-basic",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "version": "vinxi version"
+  },
+  "dependencies": {
+    "@macaron-css/core": "^1.5.2",
+    "@macaron-css/solid": "^1.5.3",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.0",
+    "@solidjs/start": "^1.1.0",
+    "solid-js": "^1.9.5",
+    "vinxi": "^0.5.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.5",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.5",
+    "unocss": "^66.1.0-beta.13"
+  }
+}
