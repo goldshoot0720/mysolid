@@ -5,7 +5,7 @@ export default function Home() {
   
   return (
     <main>
-      <Title>Hello World</Title>
+      <Title>草包鋒兄 Solid</Title>
       <h1>草包鋒兄 Solid</h1>
       <Counter />
       <p>
