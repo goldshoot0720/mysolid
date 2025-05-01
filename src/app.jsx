@@ -15,7 +15,7 @@ export default function App() {
           <a href="/sub2">Sub2</a>
           <a href="/sub3">Sub3</a>
           <a href="/sub4">Sub4</a>
-          <a href="/sub5">Sub51</a>
+          <a href="/sub5">Sub5</a>
           <a href="/sub6">Sub6</a>
           <a href="/sub7">Sub7</a>
           <a href="/sub8">Sub8</a>
