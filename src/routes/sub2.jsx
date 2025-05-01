@@ -1,6 +1,13 @@
 import { Title } from "@solidjs/meta";
 import { createClient } from "@supabase/supabase-js";
 import { onMount, createSignal, createEffect } from "solid-js";
+import "bulma/css/bulma.min.css";
+import {
+  faCoffee,
+  faMoneyBill,
+  faFile,
+} from "@fortawesome/free-solid-svg-icons";
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
 let bankname = [
   "合作金庫",
@@ -41,19 +48,19 @@ const [bank10, setBank10] = createSignal(0);
 const [banksum, setBanksum] = createSignal(0);
 
 createEffect(() => {
-	setBanksum(
-		Number(bank1()) +
-		Number(bank2()) +
-		Number(bank3()) +
-		Number(bank4()) +
-		Number(bank5()) +
-		Number(bank6()) +
-		Number(bank7()) +
-		Number(bank8()) +
-		Number(bank9()) +
-		Number(bank10())
-	);
-  });
+  setBanksum(
+    Number(bank1()) +
+      Number(bank2()) +
+      Number(bank3()) +
+      Number(bank4()) +
+      Number(bank5()) +
+      Number(bank6()) +
+      Number(bank7()) +
+      Number(bank8()) +
+      Number(bank9()) +
+      Number(bank10())
+  );
+});
 
 // Create a single supabase client for interacting with your database
 const supabase = createClient(
@@ -105,129 +112,160 @@ async function UpdateBankData() {
     })
     .eq("id", id());
   console.log(error);
-  if(!error){
-	alert("寫入成功!");
-  }
-  else{
-	alert("寫入失敗!");
+  if (!error) {
+    alert("寫入成功!");
+  } else {
+    alert("寫入失敗!");
   }
 }
 
-async function  UpdateBankHistory(){
-	const { error } = await supabase  .from('bankhistory')  .insert({ 
-		user: supabase.auth.getUser(),
-		bank1: bank1(),
-		bank2: bank2(),
-		bank3: bank3(),
-		bank4: bank4(),
-		bank5: bank5(),
-		bank6: bank6(),
-		bank7: bank7(),
-		bank8: bank8(),
-		bank9: bank9(),
-		bank10: bank10(),
-		banksum:banksum(),
-		bankdate:new Date()
-	})
-	console.log(error);
-	if(!error){
-	  alert("寫入成功!");
-	}
-	else{
-	  alert("寫入失敗!");
-	}
+async function UpdateBankHistory() {
+  const { error } = await supabase.from("bankhistory").insert({
+    user: supabase.auth.getUser(),
+    bank1: bank1(),
+    bank2: bank2(),
+    bank3: bank3(),
+    bank4: bank4(),
+    bank5: bank5(),
+    bank6: bank6(),
+    bank7: bank7(),
+    bank8: bank8(),
+    bank9: bank9(),
+    bank10: bank10(),
+    banksum: banksum(),
+    bankdate: new Date(),
+  });
+  console.log(error);
+  if (!error) {
+    alert("寫入成功!");
+  } else {
+    alert("寫入失敗!");
+  }
 }
 
 onMount(() => {
   GetBankData();
+  library.add(faCoffee, faMoneyBill, faFile);
+  dom.watch();
 });
 
 export default function Sub2() {
   return (
     <main>
       <Title>銀行資訊管理</Title>
-      <label>{bankname[0]}:</label>
-      <input
-        type="number"
-        value={bank1()}
-        onInput={(e) => setBank1((Number(e.currentTarget.value)))}
-      />
-      <br />
-      <label>{bankname[1]}:</label>
-      <input
-        type="number"
-        value={bank2()}
-        onInput={(e) => setBank2(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[2]}:</label>
-      <input
-        type="number"
-        value={bank3()}
-        onInput={(e) => setBank3(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[3]}:</label>
-      <input
-        type="number"
-        value={bank4()}
-        onInput={(e) => setBank4(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[4]}:</label>
-      <input
-        type="number"
-        value={bank5()}
-        onInput={(e) => setBank5(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[5]}:</label>
-      <input
-        type="number"
-        value={bank6()}
-        onInput={(e) => setBank6(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[6]}:</label>
-      <input
-        type="number"
-        value={bank7()}
-        onInput={(e) => setBank7(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[7]}:</label>
-      <input
-        type="number"
-        value={bank8()}
-        onInput={(e) => setBank8(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[8]}:</label>
-      <input
-        type="number"
-        value={bank9()}
-        onInput={(e) => setBank9(e.currentTarget.value)}
-      />
-      <br />
-      <label>{bankname[9]}:</label>
-      <input
-        type="number"
-        value={bank10()}
-        onInput={(e) => setBank10(e.currentTarget.value)}
-      />
-      <br />
-      <label>累積存款:{}</label>
-      <input
-        type="number"
-        value={banksum()}
-        onInput={(e) => setBanksum(e.currentTarget.value)}
-        disabled={true}
-      />
-      <br />
-      <button on:click={UpdateBankData}>寫入 Supabase myangularsub2</button>
-	  <br />
-	  <button on:click={UpdateBankHistory}>寫入 Supabase bankhistory</button>
-	  <br />
+      <p class="control has-icons-left">
+        <label>{bankname[0]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank1()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[1]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank2()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[2]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank3()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[4]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank5()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[5]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank6()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[6]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank7()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[7]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank8()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <p class="control has-icons-left">
+        <label>{bankname[9]}:</label>
+        <i class="fas fa-money-bill"></i>
+        <input
+          class="input"
+          type="number"
+          value={bank10()}
+          onInput={(e) => setBank1(e.currentTarget.value)}
+          style={{ width: "150px" }}
+        />
+      </p>
+      <br/>
+      <p class="control has-icons-left">
+        <label>累積存款:{}</label>
+        <i class="fas fa-coffee"></i>
+        <input
+          type="number"
+          value={banksum()}
+          onInput={(e) => setBanksum(e.currentTarget.value)}
+          style={{ width: "150px" }}
+          disabled={true}
+        />
+      </p>
+      <br/>
+      <p class="control has-icons-left">
+      <label>Supabase寫入:{}</label>
+      <i class="fa-solid fa-file"></i>
+        <button class="button is-info" on:click={UpdateBankData}>myangularsub2</button>
+      </p>
+      <br/>
+      <p class="control has-icons-left">
+      <label>Supabase寫入:{}</label>
+      <span class="fa-solid fa-file"></span>
+        <button class="button is-info" on:click={UpdateBankHistory}>--bankhistory--</button>
+      </p>
+      <br/>
     </main>
   );
 }
